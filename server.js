@@ -5,11 +5,16 @@ const path = require('path');
 
 const app = express();
 
-// 1. PINDAHKAN KE SINI (Paling atas setelah const app)
-// Ini agar Express langsung memberikan file .css atau .jpg jika diminta browser
+// ==========================================
+// 1. MIDDLEWARE STATIS (WAJIB PALING ATAS)
+// ==========================================
+// Ini agar Express langsung memberikan file .css, .jpg, atau .js 
+// saat browser memintanya, tanpa melewati logika rute API di bawah.
 app.use(express.static(path.join(__dirname, '.')));
 
-// 2. Baru kemudian middleware lainnya
+// ==========================================
+// 2. MIDDLEWARE LAINNYA
+// ==========================================
 app.use(cors());
 app.use(express.json({ limit: '10mb' }));
 app.use(express.urlencoded({ extended: true }));
