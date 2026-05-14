@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Renungan Pagi - GMAHK Tanjung Barat</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400&family=Lato:wght@300;400;700&family=Cinzel:wght@400;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="renungan-pagi.css">
+</head>
+<body>
+  <nav id="navbar">
+    <div class="nav-inner">
+      <a href="index.html" class="nav-logo">
+        <div class="nav-logo-icon">
+          <img src="https://pathfinderindonesia.wordpress.com/wp-content/uploads/2021/04/logo-advent.jpg?w=1024" alt="Logo Advent">
+        </div>
+        <div class="nav-logo-text">
+          <span class="nav-logo-name">GMAHK Tanjung Barat</span>
+          <span class="nav-logo-sub">Advent Hari Ketujuh</span>
+        </div>
+      </a>
+      <ul class="nav-links">
+        <li><a href="index.html#jadwal">Jadwal</a></li>
+        <li>
+          <a href="index.html#foto">Kegiatan ▾</a>
+          <div class="nav-dropdown">
+            <a href="index.html#foto">Kegiatan Jemaat</a>
+            <a href="kegiatan-pemuda.html">Kegiatan Pemuda</a>
+          </div>
+        </li>
+        <li><a href="index.html#buletin">Buletin</a></li>
+        <li>
+          <a href="index.html#artikel">Artikel ▾</a>
+          <div class="nav-dropdown">
+            <a href="renungan-pagi.html">Renungan Pagi</a>
+            <a href="index.html#artikel">Roh Nubuat</a>
+            <a href="index.html#artikel">Sekolah Sabat</a>
+          </div>
+        </li>
+        <li><a href="index.html#pembangunan">Pembangunan</a></li>
+        <li><a href="cms.html" class="nav-cta">Admin CMS</a></li>
+      </ul>
+      <div class="hamburger" onclick="toggleMenu()">
+        <span></span><span></span><span></span>
+      </div>
+    </div>
+  </nav>
+
+  <header class="renungan-hero">
+    <div class="renungan-hero-inner">
+      <span class="renungan-kicker">Renungan Pagi</span>
+      <h1 class="renungan-title">Firman Tuhan untuk memulai hari</h1>
+      <p class="renungan-subtitle">Kumpulan artikel Renungan Pagi dari CMS GMAHK Tanjung Barat. Setiap tulisan ditampilkan penuh agar jemaat dapat membaca, merenungkan, dan membagikannya dengan tenang.</p>
+    </div>
+  </header>
+
+  <main class="renungan-page">
+    <div class="renungan-layout">
+      <section class="renungan-list" id="renunganList">
+        <div class="renungan-empty">Memuat renungan pagi...</div>
+      </section>
+
+      <aside class="renungan-side">
+        <h2>Edit dari CMS</h2>
+        <p>Halaman ini mengambil artikel berkategori Renungan Pagi dari CMS. Tambahkan atau edit artikel melalui panel admin, lalu halaman ini akan mengikuti data terbaru.</p>
+        <a href="cms.html" class="renungan-side-link">Buka CMS</a>
+      </aside>
+    </div>
+  </main>
+
+  <footer>
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <span class="footer-logo-text">✝ GMAHK Tanjung Barat</span>
+        <p class="footer-tagline">Gereja Masehi Advent Hari Ketujuh</p>
+        <p class="footer-desc">Melayani Tuhan dan jemaat dengan sepenuh hati. Kami percaya bahwa setiap jiwa berharga di mata Tuhan, dan kami berkomitmen untuk menjadi berkat bagi komunitas sekitar.</p>
+        <div class="social-links">
+          <a href="#" class="social-link" title="Instagram">📷</a>
+          <a href="#" class="social-link" title="YouTube">▶</a>
+          <a href="#" class="social-link" title="Facebook">f</a>
+          <a href="#" class="social-link" title="WhatsApp">💬</a>
+        </div>
+      </div>
+      <div>
+        <h4 class="footer-heading">Navigasi</h4>
+        <ul class="footer-links">
+          <li><a href="index.html#jadwal">Jadwal Kebaktian</a></li>
+          <li><a href="index.html#foto">Kegiatan Jemaat</a></li>
+          <li><a href="kegiatan-pemuda.html">Kegiatan Pemuda</a></li>
+          <li><a href="index.html#buletin">Buletin</a></li>
+          <li><a href="index.html#artikel">Artikel</a></li>
+          <li><a href="renungan-pagi.html">Renungan Pagi</a></li>
+          <li><a href="index.html#pembangunan">Pembangunan</a></li>
+        </ul>
+      </div>
+      <div id="footerKontak">
+        <h4 class="footer-heading">Hubungi Kami</h4>
+      </div>
+      <div>
+        <h4 class="footer-heading">Minta Didoakan</h4>
+        <form class="doa-form" id="doaForm" onsubmit="submitDoa(event)">
+          <input type="text" placeholder="Nama Anda" id="doaNama" required>
+          <input type="email" placeholder="Email (opsional)" id="doaEmail">
+          <textarea placeholder="Bagikan pokok doa Anda..." id="doaPesan" required></textarea>
+          <button type="submit">🙏 Kirim Permohonan</button>
+        </form>
+        <div class="doa-success" id="doaSuccess">
+          🙏 Terima kasih! Kami akan mendoakan Anda.
+        </div>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>© 2025 GMAHK Tanjung Barat. All rights reserved.</span>
+      <span>Maranatha — Tuhan Kita Datang</span>
+    </div>
+  </footer>
+
+  <script>
+    const API = 'http://localhost:3001/api';
+
+    function escapeHtml(value) {
+      return String(value || '').replace(/[&<>"']/g, function(char) {
+        return {
+          '&': '&amp;',
+          '<': '&lt;',
+          '>': '&gt;',
+          '"': '&quot;',
+          "'": '&#39;'
+        }[char];
+      });
+    }
+
+    function formatContent(value) {
+      const paragraphs = escapeHtml(value).split(/\n\s*\n/).filter(Boolean);
+      return paragraphs.map(text => `<p>${text.replace(/\n/g, '<br>')}</p>`).join('');
+    }
+
+    async function fetchData(endpoint) {
+      try {
+        const res = await fetch(`${API}/${endpoint}`);
+        return await res.json();
+      } catch(e) {
+        return null;
+      }
+    }
+
+    async function loadRenungan() {
+      const data = await fetchData('artikel?kategori=Renungan%20Pagi');
+      const articles = data || [
+        {
+          judul: 'Renungan Pagi: Kekuatan Doa',
+          konten: 'Doa adalah nafas jiwa. Setiap hari kita dipanggil untuk hadir di hadapan Tuhan dengan hati yang terbuka dan penuh pengharapan.\n\nKetika pagi dimulai bersama Tuhan, langkah kita tidak hanya menjadi lebih tenang, tetapi juga lebih peka terhadap panggilan kasih-Nya.',
+          kategori: 'Renungan Pagi',
+          penulis: 'Pdt. Yohanes Sirait',
+          tanggal: '2025-05-01',
+          gambar: 'https://images.unsplash.com/photo-1499951360447-b19be8fe80f5?w=1200'
+        }
+      ];
+
+      const list = document.getElementById('renunganList');
+      if (!articles.length) {
+        list.innerHTML = '<div class="renungan-empty">Belum ada artikel Renungan Pagi di CMS.</div>';
+        return;
+      }
+
+      list.innerHTML = articles.map(article => `
+        <article class="renungan-article">
+          <img class="renungan-article-img" src="${escapeHtml(article.gambar || 'https://images.unsplash.com/photo-1499951360447-b19be8fe80f5?w=1200')}" alt="${escapeHtml(article.judul)}" onerror="this.style.display='none'">
+          <div class="renungan-article-body">
+            <div class="renungan-meta">
+              <span>${escapeHtml(article.kategori || 'Renungan Pagi')}</span>
+              <span>${escapeHtml(article.tanggal || '')}</span>
+              <span>${escapeHtml(article.penulis || 'GMAHK Tanjung Barat')}</span>
+            </div>
+            <h2 class="renungan-article-title">${escapeHtml(article.judul)}</h2>
+            <div class="renungan-content">${formatContent(article.konten)}</div>
+          </div>
+        </article>
+      `).join('');
+    }
+
+    async function loadKontak() {
+      const kontak = await fetchData('kontak') || {
+        alamat: 'Jl. Tanjung Barat Raya No. 10, Jakarta Selatan',
+        telepon: '+62 812-3456-7890',
+        email: 'gmahk.tanjungbarat@gmail.com',
+        instagram: 'gmahk_tanjungbarat',
+        youtube: 'GMAHK Tanjung Barat'
+      };
+
+      document.getElementById('footerKontak').innerHTML = `
+        <h4 class="footer-heading">Hubungi Kami</h4>
+        <div class="footer-contact-item"><span>📍</span><span>${escapeHtml(kontak.alamat)}</span></div>
+        <div class="footer-contact-item"><span>📞</span><span>${escapeHtml(kontak.telepon)}</span></div>
+        <div class="footer-contact-item"><span>✉</span><span>${escapeHtml(kontak.email)}</span></div>
+        <div class="footer-contact-item"><span>📷</span><span>@${escapeHtml(kontak.instagram)}</span></div>
+        <div class="footer-contact-item"><span>▶</span><span>${escapeHtml(kontak.youtube)}</span></div>
+      `;
+    }
+
+    async function submitDoa(e) {
+      e.preventDefault();
+      const nama = document.getElementById('doaNama').value;
+      const email = document.getElementById('doaEmail').value;
+      const pesan = document.getElementById('doaPesan').value;
+      try {
+        await fetch(`${API}/doa`, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ nama, email, pesan })
+        });
+      } catch(err) {}
+      document.getElementById('doaForm').style.display = 'none';
+      document.getElementById('doaSuccess').style.display = 'block';
+    }
+
+    function toggleMenu() {
+      const links = document.querySelector('.nav-links');
+      links.style.display = links.style.display === 'flex' ? 'none' : 'flex';
+      links.style.flexDirection = 'column';
+      links.style.position = 'absolute';
+      links.style.top = '70px';
+      links.style.left = '0';
+      links.style.right = '0';
+      links.style.background = 'var(--navy)';
+      links.style.padding = '20px';
+    }
+
+    loadRenungan();
+    loadKontak();
+  </script>
+</body>
+</html>

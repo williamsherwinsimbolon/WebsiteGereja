@@ -1,0 +1,519 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>GMAHK Tanjung Barat - Gereja Masehi Advent Hari Ketujuh</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400&family=Lato:wght@300;400;700&family=Cinzel:wght@400;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+  <!-- NAVBAR -->
+  <nav id="navbar">
+    <div class="nav-inner">
+      <a href="index.html" class="nav-logo">
+        <div class="nav-logo-icon">
+          <img src="https://pathfinderindonesia.wordpress.com/wp-content/uploads/2021/04/logo-advent.jpg?w=1024" alt="Logo Advent">
+        </div>
+        <div class="nav-logo-text">
+          <span class="nav-logo-name">GMAHK Tanjung Barat</span>
+          <span class="nav-logo-sub">Advent Hari Ketujuh</span>
+        </div>
+      </a>
+      <ul class="nav-links">
+        <li><a href="#jadwal">Jadwal</a></li>
+        <li>
+          <a href="#foto">Kegiatan ▾</a>
+          <div class="nav-dropdown">
+            <a href="#foto">Kegiatan Jemaat</a>
+            <a href="#pemuda">Kegiatan Pemuda</a>
+          </div>
+        </li>
+        <li><a href="#buletin">Buletin</a></li>
+        <li>
+          <a href="#artikel">Artikel ▾</a>
+          <div class="nav-dropdown">
+            <a href="renungan-pagi.html">Renungan Pagi</a>
+            <a href="#artikel" onclick="filterArtikel('Roh Nubuat')">Roh Nubuat</a>
+            <a href="#artikel" onclick="filterArtikel('Sekolah Sabat')">Sekolah Sabat</a>
+          </div>
+        </li>
+        <li><a href="#pembangunan">Pembangunan</a></li>
+        <li><a href="cms.html" class="nav-cta">Admin CMS</a></li>
+      </ul>
+      <div class="hamburger" onclick="toggleMenu()">
+        <span></span><span></span><span></span>
+      </div>
+    </div>
+  </nav>
+
+  <!-- HERO -->
+  <section id="hero">
+    <div class="hero-bg"></div>
+    <div class="hero-overlay"></div>
+    <div class="hero-content">
+      <div class="hero-tag">✝ Gereja Masehi Advent Hari Ketujuh</div>
+      <h1 class="hero-title">
+        GMAHK
+        <span>Tanjung Barat</span>
+      </h1>
+      <p class="hero-sub">Jakarta Selatan</p>
+      <p class="hero-verse">
+        "Berbahagialah orang yang miskin di hadapan Allah, karena merekalah yang empunya Kerajaan Surga." — Matius 5:3
+      </p>
+      <div class="hero-buttons">
+        <a href="#jadwal" class="btn-primary">Jadwal Kebaktian</a>
+        <a href="#maps" class="btn-outline">Temukan Kami</a>
+      </div>
+    </div>
+    <div class="hero-scroll">
+      <div class="scroll-line"></div>
+      <span>Scroll</span>
+    </div>
+  </section>
+
+  <!-- JADWAL KEBAKTIAN -->
+  <section id="jadwal">
+    <div class="section-container">
+      <div class="section-header">
+        <span class="section-tag">⛪ Jadwal Ibadah</span>
+        <h2 class="section-title">Jadwal Kebaktian<br>Jemaat GMAHK Tanjung Barat</h2>
+        <div class="section-line"></div>
+      </div>
+      <div class="jadwal-grid" id="jadwalGrid">
+        <!-- Loaded by JS -->
+      </div>
+    </div>
+  </section>
+
+  <!-- FOTO KEGIATAN -->
+  <section id="foto">
+    <div class="section-container">
+      <div class="section-header">
+        <span class="section-tag">📸 Galeri</span>
+        <h2 class="section-title">Foto Kegiatan Jemaat</h2>
+        <div class="section-line"></div>
+      </div>
+      <div class="foto-grid" id="fotoGrid">
+        <!-- Loaded by JS -->
+      </div>
+    </div>
+  </section>
+
+  <!-- BULETIN -->
+  <section id="buletin">
+    <div class="section-container">
+      <div class="section-header">
+        <span class="section-tag">📋 Buletin</span>
+        <h2 class="section-title">Buletin Kebaktian</h2>
+        <div class="section-line"></div>
+      </div>
+      <div class="buletin-list" id="buletinList">
+        <!-- Loaded by JS -->
+      </div>
+    </div>
+  </section>
+
+  <!-- ARTIKEL -->
+  <section id="artikel">
+    <div class="section-container">
+      <div class="section-header">
+        <span class="section-tag">✍ Artikel & Renungan</span>
+        <h2 class="section-title">Firman & Renungan</h2>
+        <div class="section-line"></div>
+      </div>
+      <div class="artikel-tabs">
+        <button class="artikel-tab active" onclick="filterArtikel('Semua')">Semua</button>
+        <a class="artikel-tab" href="renungan-pagi.html">Renungan Pagi</a>
+        <button class="artikel-tab" onclick="filterArtikel('Roh Nubuat')">Roh Nubuat</button>
+        <button class="artikel-tab" onclick="filterArtikel('Sekolah Sabat')">Sekolah Sabat</button>
+      </div>
+      <div class="artikel-grid" id="artikelGrid">
+        <!-- Loaded by JS -->
+      </div>
+    </div>
+  </section>
+
+  <!-- PEMBANGUNAN -->
+  <section id="pembangunan">
+    <div class="section-container">
+      <div class="section-header">
+        <span class="section-tag">🏗 Pembangunan</span>
+        <h2 class="section-title">Program Pembangunan<br>Rumah Tuhan</h2>
+        <div class="section-line"></div>
+      </div>
+      <div id="pembangunanContent">
+        <!-- Loaded by JS -->
+      </div>
+    </div>
+  </section>
+
+  <!-- MAPS -->
+  <section id="maps">
+    <div class="maps-container">
+      <div class="maps-info">
+        <h2>Temukan Kami di<br>Tanjung Barat</h2>
+        <p>GMAHK Tanjung Barat dengan tulus mengundang seluruh jemaat dan tamu untuk hadir beribadah bersama kami. Pintu kami selalu terbuka untuk semua.</p>
+        <div class="maps-detail" id="kontakDetail">
+          <!-- Loaded by JS -->
+        </div>
+        <a href="https://maps.google.com/?q=GMAHK+Tanjung+Barat+Jakarta+Selatan" target="_blank" class="btn-primary">
+          Buka di Google Maps
+        </a>
+      </div>
+      <div class="maps-embed">
+        <iframe
+          src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3965.9!2d106.8333!3d-6.3227!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zNsKwMTknMjEuNyJTIDEwNsKwNTAnMDAuMCJF!5e0!3m2!1sid!2sid!4v1"
+          allowfullscreen=""
+          loading="lazy">
+        </iframe>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <span class="footer-logo-text">✝ GMAHK Tanjung Barat</span>
+        <p class="footer-tagline">Gereja Masehi Advent Hari Ketujuh</p>
+        <p class="footer-desc">Melayani Tuhan dan jemaat dengan sepenuh hati. Kami percaya bahwa setiap jiwa berharga di mata Tuhan, dan kami berkomitmen untuk menjadi berkat bagi komunitas sekitar.</p>
+        <div class="social-links">
+          <a href="#" class="social-link" title="Instagram">📷</a>
+          <a href="#" class="social-link" title="YouTube">▶</a>
+          <a href="#" class="social-link" title="Facebook">f</a>
+          <a href="#" class="social-link" title="WhatsApp">💬</a>
+        </div>
+      </div>
+      <div>
+        <h4 class="footer-heading">Navigasi</h4>
+        <ul class="footer-links">
+          <li><a href="#jadwal">Jadwal Kebaktian</a></li>
+          <li><a href="#foto">Kegiatan Jemaat</a></li>
+          <li><a href="#buletin">Buletin</a></li>
+          <li><a href="#artikel">Artikel</a></li>
+          <li><a href="renungan-pagi.html">Renungan Pagi</a></li>
+          <li><a href="#pembangunan">Pembangunan</a></li>
+        </ul>
+      </div>
+      <div id="footerKontak">
+        <h4 class="footer-heading">Hubungi Kami</h4>
+        <!-- Loaded by JS -->
+      </div>
+      <div>
+        <h4 class="footer-heading">Minta Didoakan</h4>
+        <form class="doa-form" id="doaForm" onsubmit="submitDoa(event)">
+          <input type="text" placeholder="Nama Anda" id="doaNama" required>
+          <input type="email" placeholder="Email (opsional)" id="doaEmail">
+          <textarea placeholder="Bagikan pokok doa Anda..." id="doaPesan" required></textarea>
+          <button type="submit">🙏 Kirim Permohonan</button>
+        </form>
+        <div class="doa-success" id="doaSuccess">
+          🙏 Terima kasih! Kami akan mendoakan Anda.
+        </div>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>© 2026 GMAHK Tanjung Barat. All rights reserved.</span>
+      <span>Maranatha — Tuhan Kita Datang</span>
+    </div>
+  </footer>
+
+  <!-- MODAL -->
+  <div class="modal" id="artikelModal">
+    <button class="modal-close" onclick="closeModal()">✕</button>
+    <div class="modal-wrapper">
+      <div class="modal-content" id="modalContent">
+      </div>
+    </div>
+  </div>
+
+  <script>
+    const API = 'http://localhost:3001/api';
+
+    // ===== LOAD DATA =====
+    async function fetchData(endpoint) {
+      try {
+        const res = await fetch(`${API}/${endpoint}`);
+        return await res.json();
+      } catch(e) {
+        console.log('Using mock data for', endpoint);
+        return null;
+      }
+    }
+
+    // Jadwal
+    async function loadJadwal() {
+      const data = await fetchData('jadwal');
+      const jadwal = data || [
+        { hari: "Sabtu", jam: "08:30", nama: "Sekolah Sabat", lokasi: "Gedung Utama" },
+        { hari: "Sabtu", jam: "11:00", nama: "Kebaktian Khotbah", lokasi: "Gedung Utama" },
+        { hari: "Sabtu", jam: "16:00", nama: "Pemuda Advent", lokasi: "Gedung Utama" },
+        { hari: "Rabu", jam: "19:00", nama: "Kebaktian Rabu Malam", lokasi: "Gedung Utama" },
+        { hari: "Jumat", jam: "19:00", nama: "Vesper / Doa Malam", lokasi: "Gedung Utama" }
+      ];
+      const grid = document.getElementById('jadwalGrid');
+      grid.innerHTML = jadwal.map(j => `
+        <div class="jadwal-card">
+          <div class="jadwal-day">📅 ${j.hari}</div>
+          <div class="jadwal-name">${j.nama}</div>
+          <div class="jadwal-info"><span>🕐</span> ${j.jam} WIB</div>
+          <div class="jadwal-info"><span>📍</span> ${j.lokasi}</div>
+        </div>
+      `).join('');
+    }
+
+    // Foto
+    async function loadFoto() {
+      const data = await fetchData('foto');
+      const fotos = data || [
+        { judul: "Kebaktian Natal 2024", url: "https://images.unsplash.com/photo-1514924013411-cbf25faa35bb?w=800", kategori: "Kebaktian", tanggal: "2024-12-25" },
+        { judul: "Pemuda Outreach", url: "https://images.unsplash.com/photo-1529156069898-49953e39b3ac?w=800", kategori: "Pemuda", tanggal: "2024-11-10" },
+        { judul: "Sekolah Sabat", url: "https://images.unsplash.com/photo-1543269865-cbf427effbad?w=800", kategori: "Sekolah Sabat", tanggal: "2024-10-05" },
+        { judul: "Ibadah Padang", url: "https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=800", kategori: "Kegiatan", tanggal: "2024-09-15" },
+        { judul: "Pembaptisan", url: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=800", kategori: "Baptisan", tanggal: "2024-08-20" }
+      ];
+      const grid = document.getElementById('fotoGrid');
+      grid.innerHTML = fotos.slice(0, 5).map((f, i) => `
+        <div class="foto-item">
+          <img src="${f.url}" alt="${f.judul}" onerror="this.src='https://images.unsplash.com/photo-1519653850049-b5cadc2b2174?w=400'">
+          <div class="foto-badge">${f.kategori}</div>
+          <div class="foto-overlay">
+            <div class="foto-info">
+              <h4>${f.judul}</h4>
+              <p>${f.tanggal}</p>
+            </div>
+          </div>
+        </div>
+      `).join('');
+    }
+
+    // Artikel
+    let allArtikel = [];
+    async function loadArtikel() {
+      const data = await fetchData('artikel');
+      allArtikel = data || [
+        { id: 1, judul: "Renungan Pagi: Kekuatan Doa", konten: "Doa adalah nafas jiwa. Setiap hari kita dipanggil untuk hadir di hadapan Tuhan dengan hati yang terbuka dan penuh pengharapan...", kategori: "Renungan Pagi", penulis: "Pdt. Yohanes Sirait", tanggal: "2025-05-01", gambar: "https://images.unsplash.com/photo-1499951360447-b19be8fe80f5?w=800" },
+        { id: 2, judul: "Roh Nubuat: Kesehatan Sejati", konten: "Ellen G. White dalam tulisannya mengajarkan bahwa tubuh adalah bait Roh Kudus. Menjaga kesehatan adalah ibadah yang nyata...", kategori: "Roh Nubuat", penulis: "Ev. Martha Situmorang", tanggal: "2025-04-28", gambar: "https://images.unsplash.com/photo-1532012197267-da84d127e765?w=800" },
+        { id: 3, judul: "Pelajaran Sekolah Sabat: Hidup Berdasarkan Iman", konten: "Kuartal ini kita mempelajari bagaimana iman yang hidup mengubah cara kita berjalan bersama Tuhan setiap hari...", kategori: "Sekolah Sabat", penulis: "Tim SS GMAHK", tanggal: "2025-04-25", gambar: "https://images.unsplash.com/photo-1481627834876-b7833e8f5570?w=800" }
+      ];
+      renderArtikel(allArtikel);
+    }
+
+    function renderArtikel(list) {
+      const grid = document.getElementById('artikelGrid');
+      grid.innerHTML = list.map(a => {
+        const clickAction = a.kategori === 'Renungan Pagi' ? "window.location.href='renungan-pagi.html'" : `openArtikel(${a.id || 0})`;
+        return `
+          <div class="artikel-card" onclick="${clickAction}">
+            <div class="artikel-img">
+              <img src="${a.gambar || 'https://images.unsplash.com/photo-1499951360447-b19be8fe80f5?w=800'}" alt="${a.judul}" onerror="this.src='https://images.unsplash.com/photo-1499951360447-b19be8fe80f5?w=800'">
+            </div>
+            <div class="artikel-body">
+              <div class="artikel-cat">${a.kategori}</div>
+              <h3 class="artikel-title">${a.judul}</h3>
+              <p class="artikel-excerpt">${a.konten}</p>
+              <div class="artikel-meta">
+                <span class="artikel-author">✍ ${a.penulis}</span>
+                <span class="artikel-date">${a.tanggal}</span>
+              </div>
+            </div>
+          </div>
+        `;
+      }).join('');
+    }
+
+    function filterArtikel(kategori) {
+      document.querySelectorAll('.artikel-tab').forEach(t => t.classList.remove('active'));
+      event && event.target && event.target.classList.add('active');
+      const filtered = kategori === 'Semua' ? allArtikel : allArtikel.filter(a => a.kategori === kategori);
+      renderArtikel(filtered);
+      document.getElementById('artikel').scrollIntoView({ behavior: 'smooth' });
+    }
+
+    function openArtikel(id) {
+      const a = allArtikel.find(x => x.id == id) || allArtikel[0];
+      if (!a) return;
+      document.getElementById('modalContent').innerHTML = `
+        <div class="modal-img">
+          <img src="${a.gambar || 'https://images.unsplash.com/photo-1499951360447-b19be8fe80f5?w=800'}" alt="${a.judul}">
+        </div>
+        <div class="modal-body">
+          <div class="modal-cat">${a.kategori}</div>
+          <h2 class="modal-title">${a.judul}</h2>
+          <p class="modal-text">${a.konten}</p>
+          <div class="modal-meta">✍ ${a.penulis} &nbsp;|&nbsp; 📅 ${a.tanggal}</div>
+        </div>
+      `;
+      document.getElementById('artikelModal').classList.add('open');
+    }
+
+    function closeModal() {
+      document.getElementById('artikelModal').classList.remove('open');
+    }
+
+    // Buletin
+    async function loadBuletin() {
+      const data = await fetchData('buletin');
+      const buletin = data || [
+        { judul: "Buletin Sabat 3 Mei 2025", file: "#", tanggal: "2025-05-03" },
+        { judul: "Buletin Sabat 26 April 2025", file: "#", tanggal: "2025-04-26" }
+      ];
+      document.getElementById('buletinList').innerHTML = buletin.map(b => `
+        <a href="${b.file}" class="buletin-card">
+          <div class="buletin-icon">📄</div>
+          <div class="buletin-info">
+            <h4>${b.judul}</h4>
+            <p>${b.tanggal}</p>
+          </div>
+        </a>
+      `).join('');
+    }
+
+    // Pembangunan
+    async function loadPembangunan() {
+      const data = await fetchData('pembangunan');
+      const list = data || [{ judul: "Renovasi Gedung Utama", target: 500000000, terkumpul: 320000000, deskripsi: "Renovasi total gedung kebaktian utama untuk kenyamanan ibadah", gambar: "https://images.unsplash.com/photo-1504307651254-35680f356dfd?w=800" }];
+      document.getElementById('pembangunanContent').innerHTML = list.map(p => {
+        const pct = Math.round((p.terkumpul / p.target) * 100);
+        return `
+          <div class="progress-card">
+            <div class="progress-img">
+              <img src="${p.gambar}" alt="${p.judul}" onerror="this.src='https://images.unsplash.com/photo-1504307651254-35680f356dfd?w=800'">
+            </div>
+            <div class="progress-content">
+              <div class="progress-title">${p.judul}</div>
+              <p class="progress-desc">${p.deskripsi}</p>
+              <div class="progress-nums">
+                <div class="prog-num">
+                  <label>Target Dana</label>
+                  <value>Rp ${(p.target/1000000).toFixed(0)}Jt</value>
+                </div>
+                <div class="prog-num">
+                  <label>Terkumpul</label>
+                  <value>Rp ${(p.terkumpul/1000000).toFixed(0)}Jt</value>
+                </div>
+              </div>
+              <div class="progress-bar-wrap">
+                <div class="progress-bar-fill" style="width: ${pct}%"></div>
+              </div>
+              <div class="progress-pct">${pct}% tercapai — Mari bersama membangun rumah Tuhan 🙏</div>
+            </div>
+          </div>
+        `;
+      }).join('');
+    }
+
+    // Kontak
+    async function loadKontak() {
+      const data = await fetchData('kontak');
+      const kontak = data || {
+        alamat: "Jl. Tanjung Barat Raya No. 10, Jakarta Selatan",
+        telepon: "+62 812-3456-7890",
+        email: "gmahk.tanjungbarat@gmail.com",
+        instagram: "gmahk_tanjungbarat",
+        youtube: "GMahk Tanjung Barat",
+        facebook: "GMAHK Tanjung Barat"
+      };
+
+      document.getElementById('kontakDetail').innerHTML = `
+        <div class="map-detail-item">
+          <div class="map-detail-icon">📍</div>
+          <div class="map-detail-text">
+            <strong>Alamat</strong>
+            <span>${kontak.alamat}</span>
+          </div>
+        </div>
+        <div class="map-detail-item">
+          <div class="map-detail-icon">📞</div>
+          <div class="map-detail-text">
+            <strong>Telepon</strong>
+            <span>${kontak.telepon}</span>
+          </div>
+        </div>
+        <div class="map-detail-item">
+          <div class="map-detail-icon">✉</div>
+          <div class="map-detail-text">
+            <strong>Email</strong>
+            <span>${kontak.email}</span>
+          </div>
+        </div>
+      `;
+
+      document.getElementById('footerKontak').innerHTML = `
+        <h4 class="footer-heading">Hubungi Kami</h4>
+        <div class="footer-contact-item"><span>📍</span><span>${kontak.alamat}</span></div>
+        <div class="footer-contact-item"><span>📞</span><span>${kontak.telepon}</span></div>
+        <div class="footer-contact-item"><span>✉</span><span>${kontak.email}</span></div>
+        <div class="footer-contact-item"><span>📷</span><span>@${kontak.instagram}</span></div>
+        <div class="footer-contact-item"><span>▶</span><span>${kontak.youtube}</span></div>
+      `;
+    }
+
+    // DOA FORM
+    async function submitDoa(e) {
+      e.preventDefault();
+      const nama = document.getElementById('doaNama').value;
+      const email = document.getElementById('doaEmail').value;
+      const pesan = document.getElementById('doaPesan').value;
+      try {
+        await fetch(`${API}/doa`, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ nama, email, pesan })
+        });
+      } catch(err) {}
+      document.getElementById('doaForm').style.display = 'none';
+      document.getElementById('doaSuccess').style.display = 'block';
+    }
+
+    function toggleMenu() {
+      const links = document.querySelector('.nav-links');
+      links.style.display = links.style.display === 'flex' ? 'none' : 'flex';
+      links.style.flexDirection = 'column';
+      links.style.position = 'absolute';
+      links.style.top = '70px';
+      links.style.left = '0';
+      links.style.right = '0';
+      links.style.background = 'var(--navy)';
+      links.style.padding = '20px';
+    }
+
+    // INIT
+    loadJadwal();
+    loadFoto();
+    loadArtikel();
+    loadBuletin();
+    loadPembangunan();
+    loadKontak();
+
+    const hero = document.getElementById('hero');
+    hero.addEventListener('pointermove', function(e) {
+      const rect = hero.getBoundingClientRect();
+      const x = ((e.clientX - rect.left) / rect.width) * 100;
+      const y = ((e.clientY - rect.top) / rect.height) * 100;
+      const moveX = (50 - x) * 0.18;
+      const moveY = (50 - y) * 0.18;
+
+      hero.style.setProperty('--hero-x', `${x}%`);
+      hero.style.setProperty('--hero-y', `${y}%`);
+      hero.style.setProperty('--hero-move-x', `${moveX}px`);
+      hero.style.setProperty('--hero-move-y', `${moveY}px`);
+    });
+
+    hero.addEventListener('pointerleave', function() {
+      hero.style.setProperty('--hero-x', '50%');
+      hero.style.setProperty('--hero-y', '50%');
+      hero.style.setProperty('--hero-move-x', '0px');
+      hero.style.setProperty('--hero-move-y', '0px');
+    });
+
+    // Close modal on backdrop click
+    document.getElementById('artikelModal').addEventListener('click', function(e) {
+      if (e.target === this) closeModal();
+    });
+  </script>
+</body>
+</html>

@@ -1,0 +1,795 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CMS Admin — GMAHK Tanjung Barat</title>
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=Lato:wght@300;400;700&family=Playfair+Display:wght@400;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="cms.css">
+</head>
+<body>
+
+<!-- LOGIN SCREEN -->
+<div class="login-screen" id="loginScreen">
+  <div class="login-box">
+    <div class="login-logo">✝ GMAHK</div>
+    <div class="login-sub">CMS Admin Panel</div>
+    <div class="form-group">
+      <label>Username</label>
+      <input type="text" id="loginUser" placeholder="admin" value="admin">
+    </div>
+    <div class="form-group">
+      <label>Password</label>
+      <input type="password" id="loginPass" placeholder="••••••••" onkeydown="if(event.key==='Enter')doLogin()">
+    </div>
+    <button onclick="doLogin()">Masuk ke CMS</button>
+    <div class="login-error" id="loginError">Username atau password salah!</div>
+    <p class="login-demo">Demo: admin / gmahk2025</p>
+  </div>
+</div>
+
+<!-- CMS WRAPPER -->
+<div class="cms-wrapper is-hidden" id="cmsWrapper">
+  <!-- SIDEBAR -->
+  <aside class="sidebar">
+    <div class="sidebar-brand">
+      <span class="sidebar-logo">✝ GMAHK Tanjung Barat</span>
+      <span class="sidebar-sub">CMS Admin</span>
+    </div>
+    <nav class="sidebar-nav">
+      <div class="nav-section">Dashboard</div>
+      <a class="nav-item active" onclick="showPage('dashboard')"><span class="icon">📊</span> Dashboard</a>
+
+      <div class="nav-section">Konten Utama</div>
+      <a class="nav-item" onclick="showPage('jadwal')"><span class="icon">📅</span> Jadwal Kebaktian</a>
+      <a class="nav-item" onclick="showPage('acara')"><span class="icon">🎯</span> Current Event</a>
+      <a class="nav-item" onclick="showPage('foto')"><span class="icon">📸</span> Foto Kegiatan</a>
+      <a class="nav-item" onclick="showPage('buletin')"><span class="icon">📄</span> Buletin</a>
+
+      <div class="nav-section">Artikel</div>
+      <a class="nav-item" onclick="showPage('artikel')"><span class="icon">✍</span> Semua Artikel</a>
+      <a class="nav-item" onclick="showPage('pembangunan')"><span class="icon">🏗</span> Pembangunan</a>
+
+      <div class="nav-section">Lainnya</div>
+      <a class="nav-item" onclick="showPage('kontak')"><span class="icon">📞</span> Info Kontak</a>
+      <a class="nav-item" onclick="showPage('doa')"><span class="icon">🙏</span> Permohonan Doa</a>
+    </nav>
+    <div class="sidebar-footer">
+      <a href="index.html" target="_blank">🌐 Lihat Website</a>
+    </div>
+  </aside>
+
+  <!-- MAIN -->
+  <div class="main-content">
+    <div class="topbar">
+      <div class="topbar-title" id="pageTitle">Dashboard</div>
+      <div class="topbar-right">
+        <a href="index.html" target="_blank" class="btn-view-site">🌐 Lihat Website</a>
+        <div class="topbar-user">
+          <div class="user-avatar">A</div>
+          <span>Admin</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="page-content">
+
+      <!-- DASHBOARD -->
+      <div class="page active" id="page-dashboard">
+        <div class="stats-grid">
+          <div class="stat-card">
+            <div class="stat-icon navy">📅</div>
+            <div class="stat-info"><strong id="stat-jadwal">5</strong><span>Jadwal Kebaktian</span></div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-icon gold">🎯</div>
+            <div class="stat-info"><strong id="stat-acara">3</strong><span>Current Event</span></div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-icon gold">📸</div>
+            <div class="stat-info"><strong id="stat-foto">6</strong><span>Foto Kegiatan</span></div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-icon green">✍</div>
+            <div class="stat-info"><strong id="stat-artikel">3</strong><span>Artikel</span></div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-icon red">🙏</div>
+            <div class="stat-info"><strong id="stat-doa">0</strong><span>Permohonan Doa</span></div>
+          </div>
+        </div>
+        <div class="card">
+          <div class="card-header">
+            <div class="card-title">Selamat Datang di CMS GMAHK Tanjung Barat</div>
+          </div>
+          <div class="card-body">
+            <p class="welcome-text">
+              Panel admin ini memungkinkan Anda untuk mengelola seluruh konten website gereja. Gunakan menu di samping untuk mengakses fitur-fitur berikut:
+            </p>
+            <ul class="welcome-list">
+              <li><strong>Jadwal Kebaktian</strong> — Tambah, edit, hapus jadwal ibadah</li>
+              <li><strong>Foto Kegiatan</strong> — Kelola galeri foto jemaat</li>
+              <li><strong>Buletin</strong> — Upload buletin kebaktian</li>
+              <li><strong>Artikel</strong> — Tulis renungan, roh nubuat, SS</li>
+              <li><strong>Pembangunan</strong> — Update progres dana pembangunan</li>
+              <li><strong>Info Kontak</strong> — Edit alamat & media sosial</li>
+              <li><strong>Permohonan Doa</strong> — Lihat kiriman doa jemaat</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <!-- JADWAL -->
+      <div class="page" id="page-jadwal">
+        <div class="card">
+          <div class="card-header">
+            <div class="card-title">Jadwal Kebaktian</div>
+            <button class="btn btn-gold" onclick="openDialog('jadwal')">+ Tambah Jadwal</button>
+          </div>
+          <div class="table-wrap">
+            <table>
+              <thead>
+                <tr>
+                  <th>Hari</th>
+                  <th>Jam</th>
+                  <th>Nama Kebaktian</th>
+                  <th>Lokasi</th>
+                  <th>Aksi</th>
+                </tr>
+              </thead>
+              <tbody id="jadwalTable"></tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+
+      <!-- ACARA -->
+      <div class="page" id="page-acara">
+        <div class="card">
+          <div class="card-header">
+            <div class="card-title">Current Event Gereja</div>
+            <button class="btn btn-gold" onclick="openDialog('acara')">+ Tambah Event</button>
+          </div>
+          <div class="table-wrap">
+            <table>
+              <thead>
+                <tr>
+                  <th>Preview</th>
+                  <th>Judul</th>
+                  <th>Tanggal</th>
+                  <th>Jam</th>
+                  <th>Lokasi</th>
+                  <th>Aksi</th>
+                </tr>
+              </thead>
+              <tbody id="acaraTable"></tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+
+      <!-- FOTO -->
+      <div class="page" id="page-foto">
+        <div class="card">
+          <div class="card-header">
+            <div class="card-title">Foto Kegiatan Jemaat</div>
+            <button class="btn btn-gold" onclick="openDialog('foto')">+ Tambah Foto</button>
+          </div>
+          <div class="table-wrap">
+            <table>
+              <thead>
+                <tr>
+                  <th>Preview</th>
+                  <th>Judul</th>
+                  <th>Kategori</th>
+                  <th>Tanggal</th>
+                  <th>Aksi</th>
+                </tr>
+              </thead>
+              <tbody id="fotoTable"></tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+
+      <!-- BULETIN -->
+      <div class="page" id="page-buletin">
+        <div class="card">
+          <div class="card-header">
+            <div class="card-title">Buletin Kebaktian</div>
+            <button class="btn btn-gold" onclick="openDialog('buletin')">+ Tambah Buletin</button>
+          </div>
+          <div class="table-wrap">
+            <table>
+              <thead>
+                <tr>
+                  <th>Judul</th>
+                  <th>Tanggal</th>
+                  <th>File/Link</th>
+                  <th>Aksi</th>
+                </tr>
+              </thead>
+              <tbody id="buletinTable"></tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+
+      <!-- ARTIKEL -->
+      <div class="page" id="page-artikel">
+        <div class="card">
+          <div class="card-header">
+            <div class="card-title">Artikel & Renungan</div>
+            <button class="btn btn-gold" onclick="openDialog('artikel')">+ Tulis Artikel</button>
+          </div>
+          <div class="table-wrap">
+            <table>
+              <thead>
+                <tr>
+                  <th>Judul</th>
+                  <th>Kategori</th>
+                  <th>Penulis</th>
+                  <th>Tanggal</th>
+                  <th>Aksi</th>
+                </tr>
+              </thead>
+              <tbody id="artikelTable"></tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+
+      <!-- PEMBANGUNAN -->
+      <div class="page" id="page-pembangunan">
+        <div class="card">
+          <div class="card-header">
+            <div class="card-title">Program Pembangunan</div>
+          </div>
+          <div class="card-body" id="pembangunanForm">
+            <!-- loaded -->
+          </div>
+        </div>
+      </div>
+
+      <!-- KONTAK -->
+      <div class="page" id="page-kontak">
+        <div class="card">
+          <div class="card-header">
+            <div class="card-title">Informasi Kontak & Media Sosial</div>
+          </div>
+          <div class="card-body">
+            <div class="form-grid form-grid-2">
+              <div class="form-group">
+                <label>Alamat Gereja</label>
+                <textarea id="k-alamat" rows="2"></textarea>
+              </div>
+              <div class="form-group">
+                <label>Nomor Telepon / HP</label>
+                <input type="text" id="k-telepon">
+              </div>
+              <div class="form-group">
+                <label>Email</label>
+                <input type="email" id="k-email">
+              </div>
+              <div class="form-group">
+                <label>Instagram (tanpa @)</label>
+                <input type="text" id="k-instagram">
+              </div>
+              <div class="form-group">
+                <label>Nama Channel YouTube</label>
+                <input type="text" id="k-youtube">
+              </div>
+              <div class="form-group">
+                <label>Nama Facebook</label>
+                <input type="text" id="k-facebook">
+              </div>
+            </div>
+            <div class="form-actions form-actions-spacious">
+              <button class="btn btn-gold" onclick="saveKontak()">💾 Simpan Perubahan</button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- DOA -->
+      <div class="page" id="page-doa">
+        <div class="card">
+          <div class="card-header">
+            <div class="card-title">Permohonan Doa Jemaat</div>
+            <span class="badge badge-gold" id="doaCount">0 permohonan</span>
+          </div>
+          <div class="card-body" id="doaList">
+            <!-- loaded -->
+          </div>
+        </div>
+      </div>
+
+    </div><!-- end page-content -->
+  </div><!-- end main-content -->
+</div><!-- end cms-wrapper -->
+
+<!-- DIALOGS -->
+<div class="overlay" id="overlay" onclick="this.classList.remove('show')">
+  <div class="dialog" onclick="event.stopPropagation()">
+    <div class="dialog-header">
+      <div class="dialog-title" id="dialogTitle">Tambah</div>
+      <button class="dialog-close" onclick="closeDialog()">✕</button>
+    </div>
+    <div class="dialog-body" id="dialogBody"></div>
+  </div>
+</div>
+
+<!-- TOASTS -->
+<div class="toast-wrap" id="toasts"></div>
+
+<script>
+  const API = 'http://localhost:3001/api';
+  const TOKEN = 'gmahk-admin-2025';
+  
+  let currentEditId = null;
+  let currentEditType = null;
+
+  const headers = {
+    'Content-Type': 'application/json',
+    'Authorization': `Bearer ${TOKEN}`
+  };
+
+  // ===== AUTH =====
+  function doLogin() {
+    const u = document.getElementById('loginUser').value;
+    const p = document.getElementById('loginPass').value;
+    if (u === 'admin' && p === 'gmahk2025') {
+      document.getElementById('loginScreen').classList.add('is-hidden');
+      document.getElementById('cmsWrapper').classList.remove('is-hidden');
+      loadAll();
+    } else {
+      document.getElementById('loginError').style.display = 'block';
+    }
+  }
+
+  // ===== NAV =====
+  function showPage(id) {
+    document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+    document.querySelectorAll('.nav-item').forEach(n => n.classList.remove('active'));
+    document.getElementById('page-' + id).classList.add('active');
+    event.currentTarget.classList.add('active');
+    const titles = {
+      dashboard: 'Dashboard', jadwal: 'Jadwal Kebaktian', acara: 'Current Event', foto: 'Foto Kegiatan',
+      buletin: 'Buletin', artikel: 'Artikel & Renungan', pembangunan: 'Program Pembangunan',
+      kontak: 'Info Kontak', doa: 'Permohonan Doa'
+    };
+    document.getElementById('pageTitle').textContent = titles[id] || id;
+  }
+
+  // ===== TOAST =====
+  function toast(msg, type = 'success') {
+    const t = document.createElement('div');
+    t.className = 'toast';
+    t.innerHTML = `${type === 'success' ? '✅' : '❌'} ${msg}`;
+    document.getElementById('toasts').appendChild(t);
+    setTimeout(() => t.remove(), 3500);
+  }
+
+  // ===== DIALOG =====
+  function openDialog(type, data = null) {
+    currentEditType = type;
+    currentEditId = data?.id || null;
+    const overlay = document.getElementById('overlay');
+    const title = document.getElementById('dialogTitle');
+    const body = document.getElementById('dialogBody');
+    
+    const action = data ? 'Edit' : 'Tambah';
+
+    if (type === 'jadwal') {
+      title.textContent = action + ' Jadwal Kebaktian';
+      body.innerHTML = `
+        <div class="form-grid form-grid-2">
+          <div class="form-group">
+            <label>Hari</label>
+            <select id="f-hari">
+              <option value="Senin">Senin</option><option value="Selasa">Selasa</option>
+              <option value="Rabu">Rabu</option><option value="Kamis">Kamis</option>
+              <option value="Jumat">Jumat</option><option value="Sabtu">Sabtu</option>
+              <option value="Minggu">Minggu</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label>Jam</label>
+            <input type="time" id="f-jam" value="${data?.jam || '09:00'}">
+          </div>
+          <div class="form-group">
+            <label>Nama Kebaktian</label>
+            <input type="text" id="f-nama" value="${data?.nama || ''}" placeholder="Kebaktian Umum">
+          </div>
+          <div class="form-group">
+            <label>Lokasi</label>
+            <input type="text" id="f-lokasi" value="${data?.lokasi || ''}" placeholder="Gedung Utama">
+          </div>
+        </div>
+        <div class="form-actions">
+          <button class="btn btn-gold" onclick="saveItem('jadwal')">💾 Simpan</button>
+          <button class="btn" onclick="closeDialog()">Batal</button>
+        </div>
+      `;
+      if (data) { document.getElementById('f-hari').value = data.hari; }
+    }
+
+    else if (type === 'foto') {
+      title.textContent = action + ' Foto Kegiatan';
+      body.innerHTML = `
+        <div class="form-grid">
+          <div class="form-group">
+            <label>Judul Foto</label>
+            <input type="text" id="f-judul" value="${data?.judul || ''}" placeholder="Kebaktian Natal 2025">
+          </div>
+          <div class="form-group">
+            <label>URL Gambar</label>
+            <input type="url" id="f-url" value="${data?.url || ''}" placeholder="https://..." oninput="previewImg(this.value,'imgPrev')">
+            <img id="imgPrev" class="img-preview ${data?.url ? 'show' : ''}" src="${data?.url || ''}">
+          </div>
+          <div class="form-group">
+            <label>Kategori</label>
+            <select id="f-kategori">
+              <option>Kebaktian</option><option>Pemuda</option><option>Sekolah Sabat</option>
+              <option>Kegiatan</option><option>Baptisan</option><option>Sosial</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label>Tanggal</label>
+            <input type="date" id="f-tanggal" value="${data?.tanggal || new Date().toISOString().split('T')[0]}">
+          </div>
+        </div>
+        <div class="form-actions">
+          <button class="btn btn-gold" onclick="saveItem('foto')">💾 Simpan</button>
+          <button class="btn" onclick="closeDialog()">Batal</button>
+        </div>
+      `;
+      if (data) document.getElementById('f-kategori').value = data.kategori;
+    }
+
+    else if (type === 'acara') {
+      title.textContent = action + ' Current Event';
+      body.innerHTML = `
+        <div class="form-grid">
+          <div class="form-group">
+            <label>Judul Event</label>
+            <input type="text" id="f-judul" value="${data?.judul || ''}" placeholder="Kebaktian Sabat Spesial">
+          </div>
+          <div class="form-grid form-grid-2">
+            <div class="form-group">
+              <label>Tanggal</label>
+              <input type="date" id="f-tanggal" value="${data?.tanggal || new Date().toISOString().split('T')[0]}">
+            </div>
+            <div class="form-group">
+              <label>Jam</label>
+              <input type="time" id="f-jam" value="${data?.jam || '09:00'}">
+            </div>
+          </div>
+          <div class="form-group">
+            <label>Lokasi</label>
+            <input type="text" id="f-lokasi" value="${data?.lokasi || ''}" placeholder="Gedung Utama">
+          </div>
+          <div class="form-group">
+            <label>URL Gambar</label>
+            <input type="url" id="f-gambar" value="${data?.gambar || ''}" placeholder="https://..." oninput="previewImg(this.value,'eventPrev')">
+            <img id="eventPrev" class="img-preview ${data?.gambar ? 'show' : ''}" src="${data?.gambar || ''}">
+          </div>
+          <div class="form-group">
+            <label>Deskripsi</label>
+            <textarea id="f-deskripsi" rows="4">${data?.deskripsi || ''}</textarea>
+          </div>
+        </div>
+        <div class="form-actions">
+          <button class="btn btn-gold" onclick="saveItem('acara')">💾 Simpan</button>
+          <button class="btn" onclick="closeDialog()">Batal</button>
+        </div>
+      `;
+    }
+
+    else if (type === 'buletin') {
+      title.textContent = action + ' Buletin';
+      body.innerHTML = `
+        <div class="form-grid">
+          <div class="form-group">
+            <label>Judul Buletin</label>
+            <input type="text" id="f-judul" value="${data?.judul || ''}" placeholder="Buletin Sabat 10 Mei 2025">
+          </div>
+          <div class="form-group">
+            <label>Link File / URL (PDF/Drive)</label>
+            <input type="url" id="f-file" value="${data?.file || ''}" placeholder="https://drive.google.com/...">
+          </div>
+        </div>
+        <div class="form-actions">
+          <button class="btn btn-gold" onclick="saveItem('buletin')">💾 Simpan</button>
+          <button class="btn" onclick="closeDialog()">Batal</button>
+        </div>
+      `;
+    }
+
+    else if (type === 'artikel') {
+      title.textContent = action + ' Artikel';
+      body.innerHTML = `
+        <div class="form-grid">
+          <div class="form-group">
+            <label>Judul Artikel</label>
+            <input type="text" id="f-judul" value="${data?.judul || ''}" placeholder="Judul renungan...">
+          </div>
+          <div class="form-group">
+            <label>Kategori</label>
+            <select id="f-kategori">
+              <option>Renungan Pagi</option>
+              <option>Roh Nubuat</option>
+              <option>Sekolah Sabat</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label>Penulis</label>
+            <input type="text" id="f-penulis" value="${data?.penulis || ''}" placeholder="Nama penulis">
+          </div>
+          <div class="form-group">
+            <label>URL Gambar (opsional)</label>
+            <input type="url" id="f-gambar" value="${data?.gambar || ''}" placeholder="https://..." oninput="previewImg(this.value,'artPrev')">
+            <img id="artPrev" class="img-preview ${data?.gambar ? 'show' : ''}" src="${data?.gambar || ''}">
+          </div>
+          <div class="form-group">
+            <label>Isi Artikel</label>
+            <textarea id="f-konten" rows="6">${data?.konten || ''}</textarea>
+          </div>
+        </div>
+        <div class="form-actions">
+          <button class="btn btn-gold" onclick="saveItem('artikel')">💾 Simpan</button>
+          <button class="btn" onclick="closeDialog()">Batal</button>
+        </div>
+      `;
+      if (data) document.getElementById('f-kategori').value = data.kategori;
+    }
+
+    overlay.classList.add('show');
+  }
+
+  function closeDialog() {
+    document.getElementById('overlay').classList.remove('show');
+    currentEditId = null;
+    currentEditType = null;
+  }
+
+  function previewImg(url, id) {
+    const img = document.getElementById(id);
+    if (url) {
+      img.src = url;
+      img.classList.add('show');
+    } else {
+      img.classList.remove('show');
+    }
+  }
+
+  // ===== CRUD =====
+  async function apiCall(method, endpoint, body) {
+    try {
+      const res = await fetch(`${API}${endpoint}`, {
+        method,
+        headers,
+        body: body ? JSON.stringify(body) : undefined
+      });
+      return await res.json();
+    } catch(e) {
+      console.error(e);
+      return null;
+    }
+  }
+
+  async function saveItem(type) {
+    let body = {};
+    if (type === 'jadwal') {
+      body = { hari: document.getElementById('f-hari').value, jam: document.getElementById('f-jam').value, nama: document.getElementById('f-nama').value, lokasi: document.getElementById('f-lokasi').value };
+    } else if (type === 'foto') {
+      body = { judul: document.getElementById('f-judul').value, url: document.getElementById('f-url').value, kategori: document.getElementById('f-kategori').value, tanggal: document.getElementById('f-tanggal').value };
+    } else if (type === 'acara') {
+      body = { judul: document.getElementById('f-judul').value, tanggal: document.getElementById('f-tanggal').value, jam: document.getElementById('f-jam').value, lokasi: document.getElementById('f-lokasi').value, gambar: document.getElementById('f-gambar').value, deskripsi: document.getElementById('f-deskripsi').value };
+    } else if (type === 'buletin') {
+      body = { judul: document.getElementById('f-judul').value, file: document.getElementById('f-file').value };
+    } else if (type === 'artikel') {
+      body = { judul: document.getElementById('f-judul').value, kategori: document.getElementById('f-kategori').value, penulis: document.getElementById('f-penulis').value, gambar: document.getElementById('f-gambar').value, konten: document.getElementById('f-konten').value };
+    }
+    
+    if (currentEditId) {
+      await apiCall('PUT', `/cms/${type}/${currentEditId}`, body);
+      toast(`${type} berhasil diperbarui!`);
+    } else {
+      await apiCall('POST', `/cms/${type}`, body);
+      toast(`${type} berhasil ditambahkan!`);
+    }
+    closeDialog();
+    await loadAll();
+  }
+
+  async function deleteItem(type, id) {
+    if (!confirm('Yakin ingin menghapus data ini?')) return;
+    await apiCall('DELETE', `/cms/${type}/${id}`, null);
+    toast(`Data berhasil dihapus!`);
+    await loadAll();
+  }
+
+  // ===== LOAD ALL =====
+  async function loadAll() {
+    await Promise.all([loadJadwal(), loadAcara(), loadFoto(), loadBuletin(), loadArtikel(), loadPembangunan(), loadKontak(), loadDoa()]);
+  }
+
+  async function loadJadwal() {
+    const data = await apiCall('GET', '/jadwal', null);
+    const list = data || [];
+    document.getElementById('stat-jadwal').textContent = list.length;
+    document.getElementById('jadwalTable').innerHTML = list.map(j => `
+      <tr>
+        <td><span class="badge badge-navy">${j.hari}</span></td>
+        <td><strong>${j.jam}</strong></td>
+        <td>${j.nama}</td>
+        <td>${j.lokasi}</td>
+        <td>
+          <button class="btn btn-sm btn-primary" onclick='openDialog("jadwal", ${JSON.stringify(j)})'>✏ Edit</button>
+          <button class="btn btn-sm btn-danger" onclick="deleteItem('jadwal', ${j.id})">🗑</button>
+        </td>
+      </tr>
+    `).join('');
+  }
+
+  async function loadFoto() {
+    const data = await apiCall('GET', '/foto', null);
+    const list = data || [];
+    document.getElementById('stat-foto').textContent = list.length;
+    document.getElementById('fotoTable').innerHTML = list.map(f => `
+      <tr>
+        <td><img src="${f.url}" class="table-thumb" onerror="this.style.display='none'"></td>
+        <td>${f.judul}</td>
+        <td><span class="badge badge-gold">${f.kategori}</span></td>
+        <td>${f.tanggal}</td>
+        <td>
+          <button class="btn btn-sm btn-primary" onclick='openDialog("foto", ${JSON.stringify(f).replace(/'/g, "&#39;")})'>✏ Edit</button>
+          <button class="btn btn-sm btn-danger" onclick="deleteItem('foto', ${f.id})">🗑</button>
+        </td>
+      </tr>
+    `).join('');
+  }
+
+  async function loadAcara() {
+    const data = await apiCall('GET', '/acara', null);
+    const list = data || [];
+    document.getElementById('stat-acara').textContent = list.length;
+    document.getElementById('acaraTable').innerHTML = list.map(a => `
+      <tr>
+        <td><img src="${a.gambar}" class="table-thumb" onerror="this.style.display='none'"></td>
+        <td><strong>${a.judul}</strong></td>
+        <td>${a.tanggal}</td>
+        <td>${a.jam || '-'}</td>
+        <td>${a.lokasi || '-'}</td>
+        <td>
+          <button class="btn btn-sm btn-primary" onclick='openDialog("acara", ${JSON.stringify(a).replace(/'/g, "&#39;")})'>✏ Edit</button>
+          <button class="btn btn-sm btn-danger" onclick="deleteItem('acara', ${a.id})">🗑</button>
+        </td>
+      </tr>
+    `).join('');
+  }
+
+  async function loadBuletin() {
+    const data = await apiCall('GET', '/buletin', null);
+    const list = data || [];
+    document.getElementById('buletinTable').innerHTML = list.map(b => `
+      <tr>
+        <td>${b.judul}</td>
+        <td>${b.tanggal}</td>
+        <td><a href="${b.file}" target="_blank" class="file-link">📎 Lihat File</a></td>
+        <td>
+          <button class="btn btn-sm btn-danger" onclick="deleteItem('buletin', ${b.id})">🗑</button>
+        </td>
+      </tr>
+    `).join('');
+  }
+
+  async function loadArtikel() {
+    const data = await apiCall('GET', '/artikel', null);
+    const list = data || [];
+    document.getElementById('stat-artikel').textContent = list.length;
+    document.getElementById('artikelTable').innerHTML = list.map(a => `
+      <tr>
+        <td><strong>${a.judul}</strong></td>
+        <td><span class="badge badge-gold">${a.kategori}</span></td>
+        <td>${a.penulis}</td>
+        <td>${a.tanggal}</td>
+        <td>
+          <button class="btn btn-sm btn-primary" onclick='openDialog("artikel", ${JSON.stringify(a).replace(/'/g, "&#39;")})'>✏ Edit</button>
+          <button class="btn btn-sm btn-danger" onclick="deleteItem('artikel', ${a.id})">🗑</button>
+        </td>
+      </tr>
+    `).join('');
+  }
+
+  async function loadPembangunan() {
+    const data = await apiCall('GET', '/pembangunan', null);
+    const list = data || [{ id: 1, judul: '', target: 500000000, terkumpul: 320000000, deskripsi: '', gambar: '' }];
+    const p = list[0];
+    document.getElementById('pembangunanForm').innerHTML = `
+      <div class="form-grid form-grid-2">
+        <div class="form-group">
+          <label>Judul Program</label>
+          <input type="text" id="pb-judul" value="${p.judul || ''}">
+        </div>
+        <div class="form-group">
+          <label>URL Gambar</label>
+          <input type="url" id="pb-gambar" value="${p.gambar || ''}" oninput="previewImg(this.value,'pbPrev')">
+          <img id="pbPrev" class="img-preview ${p.gambar ? 'show' : ''}" src="${p.gambar || ''}">
+        </div>
+        <div class="form-group">
+          <label>Target Dana (Rp)</label>
+          <input type="number" id="pb-target" value="${p.target || 0}">
+        </div>
+        <div class="form-group">
+          <label>Dana Terkumpul (Rp)</label>
+          <input type="number" id="pb-terkumpul" value="${p.terkumpul || 0}">
+        </div>
+        <div class="form-group form-group-full">
+          <label>Deskripsi Program</label>
+          <textarea id="pb-deskripsi">${p.deskripsi || ''}</textarea>
+        </div>
+      </div>
+      <div class="form-actions form-actions-comfortable">
+        <button class="btn btn-gold" onclick="savePembangunan(${p.id})">💾 Simpan Perubahan</button>
+      </div>
+    `;
+  }
+
+  async function savePembangunan(id) {
+    const body = {
+      judul: document.getElementById('pb-judul').value,
+      gambar: document.getElementById('pb-gambar').value,
+      target: parseFloat(document.getElementById('pb-target').value),
+      terkumpul: parseFloat(document.getElementById('pb-terkumpul').value),
+      deskripsi: document.getElementById('pb-deskripsi').value,
+    };
+    await apiCall('PUT', `/cms/pembangunan/${id}`, body);
+    toast('Data pembangunan berhasil disimpan!');
+  }
+
+  async function loadKontak() {
+    const data = await apiCall('GET', '/kontak', null);
+    if (!data) return;
+    document.getElementById('k-alamat').value = data.alamat || '';
+    document.getElementById('k-telepon').value = data.telepon || '';
+    document.getElementById('k-email').value = data.email || '';
+    document.getElementById('k-instagram').value = data.instagram || '';
+    document.getElementById('k-youtube').value = data.youtube || '';
+    document.getElementById('k-facebook').value = data.facebook || '';
+  }
+
+  async function saveKontak() {
+    const body = {
+      alamat: document.getElementById('k-alamat').value,
+      telepon: document.getElementById('k-telepon').value,
+      email: document.getElementById('k-email').value,
+      instagram: document.getElementById('k-instagram').value,
+      youtube: document.getElementById('k-youtube').value,
+      facebook: document.getElementById('k-facebook').value,
+    };
+    await apiCall('PUT', '/cms/kontak', body);
+    toast('Informasi kontak berhasil disimpan!');
+  }
+
+  async function loadDoa() {
+    const data = await apiCall('GET', '/cms/doa', null);
+    const list = data || [];
+    document.getElementById('stat-doa').textContent = list.length;
+    document.getElementById('doaCount').textContent = list.length + ' permohonan';
+    if (list.length === 0) {
+      document.getElementById('doaList').innerHTML = '<p class="doa-empty">Belum ada permohonan doa.</p>';
+      return;
+    }
+    document.getElementById('doaList').innerHTML = list.reverse().map(d => `
+      <div class="doa-item">
+        <h4>🙏 ${d.nama} ${d.email ? `— ${d.email}` : ''}</h4>
+        <p>${d.pesan}</p>
+        <div class="doa-meta">${new Date(d.tanggal).toLocaleString('id-ID')}</div>
+      </div>
+    `).join('');
+  }
+</script>
+</body>
+</html>

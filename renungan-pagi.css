@@ -1,0 +1,194 @@
+.renungan-hero {
+  min-height: 52vh;
+  padding: 130px 2rem 80px;
+  display: flex;
+  align-items: center;
+  position: relative;
+  overflow: hidden;
+  background:
+    linear-gradient(135deg, rgba(10,22,40,0.88), rgba(10,22,40,0.58)),
+    url('https://news.unai.edu/wp-content/uploads/2023/08/IMG_9074-Enhanced-NR-scaled-1.jpg') center/cover no-repeat;
+}
+
+.renungan-hero::after {
+  content: '';
+  position: absolute;
+  inset: auto -10% -40% 45%;
+  height: 360px;
+  background: radial-gradient(circle, rgba(232,201,122,0.2), transparent 62%);
+  pointer-events: none;
+}
+
+.renungan-hero-inner {
+  width: min(1120px, 100%);
+  margin: 0 auto;
+  position: relative;
+  z-index: 1;
+}
+
+.renungan-kicker {
+  display: inline-block;
+  border: 1px solid rgba(232,201,122,0.5);
+  color: var(--gold-light);
+  font-family: 'Cinzel', serif;
+  font-size: 11px;
+  letter-spacing: 3px;
+  padding: 7px 18px;
+  text-transform: uppercase;
+  margin-bottom: 22px;
+}
+
+.renungan-title {
+  max-width: 760px;
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(42px, 7vw, 78px);
+  line-height: 1.05;
+  color: white;
+  margin-bottom: 18px;
+}
+
+.renungan-subtitle {
+  max-width: 660px;
+  color: rgba(255,255,255,0.72);
+  font-size: 17px;
+  line-height: 1.8;
+}
+
+.renungan-page {
+  background: var(--cream);
+  padding: 80px 2rem;
+}
+
+.renungan-layout {
+  max-width: 1120px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 300px;
+  gap: 40px;
+  align-items: start;
+}
+
+.renungan-list {
+  display: grid;
+  gap: 34px;
+}
+
+.renungan-article {
+  background: white;
+  border: 1px solid var(--cream-dark);
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 18px 45px rgba(10,22,40,0.08);
+}
+
+.renungan-article-img {
+  width: 100%;
+  height: 360px;
+  object-fit: cover;
+  display: block;
+}
+
+.renungan-article-body {
+  padding: clamp(28px, 5vw, 48px);
+}
+
+.renungan-meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  color: var(--gold-dark);
+  font-family: 'Cinzel', serif;
+  font-size: 11px;
+  letter-spacing: 1.4px;
+  text-transform: uppercase;
+  margin-bottom: 18px;
+}
+
+.renungan-article-title {
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(30px, 5vw, 46px);
+  line-height: 1.15;
+  color: var(--navy);
+  margin-bottom: 22px;
+}
+
+.renungan-content {
+  color: var(--text);
+  font-size: 17px;
+  line-height: 1.95;
+}
+
+.renungan-content p + p {
+  margin-top: 18px;
+}
+
+.renungan-side {
+  position: sticky;
+  top: 100px;
+  background: var(--navy);
+  color: white;
+  border-radius: 12px;
+  padding: 26px;
+  box-shadow: 0 18px 45px rgba(10,22,40,0.18);
+}
+
+.renungan-side h2 {
+  font-family: 'Playfair Display', serif;
+  font-size: 24px;
+  margin-bottom: 12px;
+  color: var(--gold);
+}
+
+.renungan-side p {
+  color: rgba(255,255,255,0.68);
+  font-size: 14px;
+  line-height: 1.8;
+  margin-bottom: 20px;
+}
+
+.renungan-side-link {
+  display: inline-flex;
+  color: var(--navy);
+  background: linear-gradient(135deg, var(--gold-light), var(--gold-dark));
+  padding: 11px 16px;
+  border-radius: 999px;
+  font-family: 'Cinzel', serif;
+  font-size: 11px;
+  letter-spacing: 1px;
+  font-weight: 700;
+  text-decoration: none;
+  text-transform: uppercase;
+}
+
+.renungan-empty {
+  background: white;
+  border: 1px solid var(--cream-dark);
+  border-radius: 12px;
+  padding: 42px;
+  text-align: center;
+  color: var(--text-light);
+}
+
+@media (max-width: 900px) {
+  .renungan-layout {
+    grid-template-columns: 1fr;
+  }
+
+  .renungan-side {
+    position: static;
+  }
+}
+
+@media (max-width: 560px) {
+  .renungan-hero {
+    padding: 110px 1.25rem 60px;
+  }
+
+  .renungan-page {
+    padding: 54px 1.25rem;
+  }
+
+  .renungan-article-img {
+    height: 240px;
+  }
+}
