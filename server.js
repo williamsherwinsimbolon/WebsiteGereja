@@ -5,15 +5,16 @@ const path = require('path');
 
 const app = express();
 
-// Middleware
+// 1. PINDAHKAN KE SINI (Paling atas setelah const app)
+// Ini agar Express langsung memberikan file .css atau .jpg jika diminta browser
+app.use(express.static(path.join(__dirname, '.')));
+
+// 2. Baru kemudian middleware lainnya
 app.use(cors());
 app.use(express.json({ limit: '10mb' }));
 app.use(express.urlencoded({ extended: true }));
 
-// PENTING: Melayani file statis (HTML, CSS, JS, Gambar) dari folder root
-app.use(express.static(path.join(__dirname, '.')));
-
-// Path ke Database (Simulasi JSON)
+// 3. Path ke Database
 const DB_PATH = path.join(__dirname, 'data', 'db.json');
 
 // Initialize DB (Tetap aman di Vercel meskipun Read-Only)
