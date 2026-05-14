@@ -8,10 +8,6 @@
   ],
   "routes": [
     {
-      "src": "/(styles\.css|cms\.css|kegiatan-pemuda\.css|renungan-pagi\.css)",
-      "continue": true
-    },
-    {
       "handle": "filesystem"
     },
     {
